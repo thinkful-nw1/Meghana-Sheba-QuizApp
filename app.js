@@ -55,53 +55,120 @@ const store = {
   ]
 };
 
-function generateStartPage(){
-  $('.app').html(`<header role=banner class='startQuiz'>
-      <h1> Welcome to the Disney movies Quiz!! </h1>
-    </header>
-    <div class='start'>
-      <p> How well do you know your Disney movies?</p>
-      <hr>
-      <button class='start-quiz'>START QUIZ</button>
-      </div>`);
-}
-function handleStartButton(){
+// function generateStartPage(){
+//   $('.app').html(`<header role=banner class='startQuiz'>
+//       <h1> Welcome to the Disney movies Quiz!! </h1>
+//     </header>
+//     <div class='start'>
+//       <p> How well do you know your Disney movies?</p>
+//       <hr>
+//       <button class='start-quiz'>START QUIZ</button>
+//       </div>`);
+// }
 
-$('.js-start-quiz').on('click', function(){
-  render();
-});
+
+
 
 function render() {
   let currentQuestion = store.questions[store.currentIndex];
+
   $('.app').html(generateQuestionHTML(currentQuestion));
+  }
+
+function renderResult() {
+  $('.app').html(generateResultHTML());
+  console.log(store.score);
+}
+function generateResultHTML() {
+  if (store.score > 3) {
+    $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 6.<br>
+	*************************************************************<br>
+	             You are a true Disney lover  !!! <br>
+	*************************************************************</h1>
+	<h2>You may retake the Quiz</h2>
+	<p> <button  class='restart' > Restart </button></p>`);
+  }
+  else {
+    $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /6 . <br>
+	*************************************************************<br>
+	Better luck next time!!! <br>
+	**************************************************************
+		</h1>
+
+	<h2>You may retake the Quiz</h2>
+	<p> <button  class='restart' type = "submit" > Restart </button></p>
+	</div>`);
+  }
 }
 
-function generateQuestionHTML(question) {
-  $('.app').html(`<div class="container">
+
+function handleStartButton() {
+  $('.app').on('click','.start-quiz',function () {
+        render();
+  });
+}
+
+  function generateQuestionHTML(question) {
+    $('.app').html(`<div class="container">
 				<header>
 				<h2 class ='title'>The Disney Quiz</h2>
 				</header>
-				<form action="post" class ="questionForm" >
-						<p> Question  ${store.currentIndex + 1 }  out of 6. </p>
-						<h3> ${question.question}</h3>
+				<form action="none" class ="questionForm" >
+				<fieldset class="questionchoices">
+						<p> Question  ${store.currentIndex + 1}  out of 6. </p>
+					<legend> <h3>${question.question}</h3></legend>
 						<ul>
 						${question.answers.map(function (answer, index) {
-    return `<li> <input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
-							<label for="ans-${index}">${answer}</label></input></li>`;
-  }).join('')}
-						</ul>
+        return `<li> <input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
+							<label for="ans-${index}" id = "ans">${answer}</label></input></li>`;
+      }).join('')}
+						</ul></fieldset>
+							<button id ='submitButton'> Submit</button>
+          </form>
 
-					</form>
-          <button class = 'checkAns' type = 'submit'>Submit</button>
-					<h3> Your score: ${store.score} / 6 </h3>
-					`);
+          <h3 id ="results"> ${store.correctAns} </h3>
+          <h3> Your score: ${store.score} / 6 </h3>`);
+
+  }
+
+function handleSubmitQuestion(){
+  $('.app').on('submit', '.questionForm',function (e) {
+    e.preventDefault();
+    console.log("handleSubmitQuestion ran");
+    console.log(e);
+    store.currentIndex++;
+    console.log(store.questions[store.currentIndex]);
+    showFeedBackPage();
+  });
+
+}
+function showFeedBackPage(){
+  $('.app').html(`<h2> You are right/wrong</h2>
+  <p><button class ="submit-Question"></button></p>`)
+  showNextPage();
+}
+
+function showNextPage(){
+  $('.app').on ('click','.submit-Question' , function(){
+    if (store.currentIndex >= store.questions.length){
+      renderResult();
+    }
+    else{
+      render();
+    }
+  console.log(store.currentIndex);
+
+});
 }
 
 function main(){
-generateStartPage();
- handleStartButton();
+  handleStartButton();
+  handleSubmitQuestion();
 }
-$(main);
+
+$(
+  main
+);
 
 // function positiveFeedback(){}
 // function negativeFeedback(){}
