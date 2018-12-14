@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+  font-family: 'WaltographRegular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 35px;
+}
+
+body {
+  display: flex;
+  line-height: 1.2em;
+  height: 700px;
+  background-image: url('/Users/vaibhavjoshi/Documents/Meghana/WebDevelpment/Thinkful/quizApp/images/backgroundImg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: auto;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(192, 171, 216);
+}
+
+button,
+#ans {
+  padding: 10px;
+}
+
+input[type="radio"]:hover {
+  cursor: pointer;
+  background-color: rgb(192, 171, 216);
+}
+
+.title {
+  text-align: center;
+  margin: auto;
+}
+
+#ans:hover {
+  cursor: pointer;
+  background-color: rgb(192, 171, 216);
+}
+
+
+.app {
+  width: 70%;
+  padding: 10px;
+  overflow: auto;
+  margin: auto;
+  background:
+    linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+  color: rgb(25, 19, 10);
+  /* font-weight: bold; */
+  font-size: 18px;
+  background-size: cover;
+  text-shadow: #e8e2e2;
+  flex-wrap: wrap;
+}
+
+fieldset {
+  border: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+header {
+  display: flex background-color: #ffd1ff;
+  margin: auto;
+  color: black;
+  padding: 5px 10px;
+  font-size: 16px;
+
+}
+
+footer {
+  color: #ffffff;
+  padding: 5px 10px;
+  color: black;
+}
+
+
+.Result {
+  font-size: 40px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
