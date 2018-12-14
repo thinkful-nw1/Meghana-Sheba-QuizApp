@@ -112,3 +112,4 @@ function generateQuestionHTML(question) {
 // function negativeFeedback(){}
 // function showResults(){}
 // function resetQuiz(){}
+// function resetQuiz(){}
