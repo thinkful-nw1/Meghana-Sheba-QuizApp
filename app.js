@@ -9,8 +9,6 @@
 
 */
 'use strict';
-alert('connected');
-console.log($);
 
 const store = {
   'score': 0,
@@ -57,59 +55,55 @@ const store = {
   ]
 };
 
-// function generateStartPage(){
-//   $('.app').html(`<header role=banner class='startQuiz'>
-//       <h1> Welcome to the Disney movies Quiz!! </h1>
-//     </header>
-//     <div class='start'>
-//       <p> How well do you know your Disney movies?</p>
-//       <hr>
-//       <button class='start-quiz'>START QUIZ</button>
-//       </div>`);
-// }
+function generateStartPage(){
+  $('.app').html(`<header role=banner class='startQuiz'>
+      <h1> Welcome to the Disney movies Quiz!! </h1>
+    </header>
+    <div class='start'>
+      <p> How well do you know your Disney movies?</p>
+      <hr>
+      <button class='start-quiz'>START QUIZ</button>
+      </div>`);
+}
+function handleStartButton(){
 
-
-$(render);
-
+$('.js-start-quiz').on('click', function(){
+  render();
+});
 
 function render() {
-  //this function renders the first question
-  $('.start-quiz').on('click', function () {
-    console.log("clicked");
-    let currentQuestion = store.questions[store.currentIndex];
-    console.log(currentQuestion);
-     generateQuestionHTML(currentQuestion);
-  });
- 
+  let currentQuestion = store.questions[store.currentIndex];
+  $('.app').html(generateQuestionHTML(currentQuestion));
 }
 
-
 function generateQuestionHTML(question) {
-  //this function takes question as an argument and will be used to show the current question from the store object, it loops over the answers and gives an ul of answers 
   $('.app').html(`<div class="container">
 				<header>
 				<h2 class ='title'>The Disney Quiz</h2>
 				</header>
 				<form action="post" class ="questionForm" >
 						<p> Question  ${store.currentIndex + 1 }  out of 6. </p>
-            <h3> ${question.question}</h3>
-            <ul>
-            ${question.answers.map(function(answer,index){
-               return `<li> <input id="ans-${index}" type="radio" name='answers' value='${index}' required >
-               <label for="ans-${index}" id="ans">${answer}</label></input></li>`;
-		        }).join('')}
-            </ul>
-          <button class ='checkAns'type = 'submit'> Submit </button>
+						<h3> ${question.question}</h3>
+						<ul>
+						${question.answers.map(function (answer, index) {
+    return `<li> <input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
+							<label for="ans-${index}">${answer}</label></input></li>`;
+  }).join('')}
+						</ul>
+
 					</form>
-          
-					<h3> Your score: ${store.score} / 6 </h3>`
-					);
+          <button class = 'checkAns' type = 'submit'>Submit</button>
+					<h3> Your score: ${store.score} / 6 </h3>
+					`);
 }
 
-
+function main(){
+generateStartPage();
+ handleStartButton();
+}
+$(main);
 
 // function positiveFeedback(){}
 // function negativeFeedback(){}
 // function showResults(){}
-// function resetQuiz(){}
 // function resetQuiz(){}
