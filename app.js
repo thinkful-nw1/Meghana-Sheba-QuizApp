@@ -9,6 +9,8 @@
 
 */
 'use strict';
+alert('connected');
+console.log($);
 
 const store = {
   'score': 0,
@@ -66,35 +68,44 @@ const store = {
 //       </div>`);
 // }
 
-function handleStartButton(){
 
+$(render);
 
 
 function render() {
-  let currentQuestion = store.questions[store.currentIndex];
-  console.log(currentQuestion);
-  $('.js-start-quiz').on('click', function () {
-     $('.app').html(generateQuestionHTML(currentQuestion));
+  //this function renders the first question
+  $('.start-quiz').on('click', function () {
+    console.log("clicked");
+    let currentQuestion = store.questions[store.currentIndex];
+    console.log(currentQuestion);
+     generateQuestionHTML(currentQuestion);
   });
  
 }
 
+
 function generateQuestionHTML(question) {
+  //this function takes question as an argument and will be used to show the current question from the store object, it loops over the answers and gives an ul of answers 
   $('.app').html(`<div class="container">
 				<header>
 				<h2 class ='title'>The Disney Quiz</h2>
 				</header>
 				<form action="post" class ="questionForm" >
 						<p> Question  ${store.currentIndex + 1 }  out of 6. </p>
-						<h3> ${question.question}</h3>
-						
-
+            <h3> ${question.question}</h3>
+            <ul>
+            ${question.answers.map(function(answer,index){
+               return `<li> <input id="ans-${index}" type="radio" name='answers' value='${index}' required >
+               <label for="ans-${index}" id="ans">${answer}</label></input></li>`;
+		        }).join('')}
+            </ul>
+          <button class ='checkAns'type = 'submit'> Submit </button>
 					</form>
-          <button class = 'checkAns' type = 'submit'>Submit</button>
+          
 					<h3> Your score: ${store.score} / 6 </h3>`
 					);
 }
-$(handleStartButton);
+
 
 
 // function positiveFeedback(){}
