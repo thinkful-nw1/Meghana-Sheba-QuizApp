@@ -103,7 +103,7 @@ function handleStartButton() {
 				</header>
 				<form action="none" class ="questionForm" >
 				<fieldset class="questionchoices">
-						<p> Question  ${store.currentIndex + 1}  out of 6. </p>
+						<p> Question  ${store.currentIndex + 1}  out of 7. </p>
 					<legend> <h3>${question.question}</h3></legend>
 						<ul>
 						${question.answers.map(function (answer, index) {
@@ -115,19 +115,19 @@ function handleStartButton() {
           </form>
 
           <h3 id ="results"> ${store.correctAns} </h3>
-          <h3> Your score: ${store.score} / 6 </h3>`);
+          <h3> Your score: ${store.score} / 7 </h3>`);
 
   }
   function generateResultHTML() {
     if (store.score > 3) {
-      $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 6.<br>
+      $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 7.<br>
 	*************************************************************<br>
 	             You are a true Disney lover  !!! <br>
 	*************************************************************</h1>
 	<h2>You may retake the Quiz</h2>
 	<p> <button  class='restart' > Restart </button></p>`);
     } else {
-      $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /6 . <br>
+      $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /7 . <br>
 	*************************************************************<br>
 	Better luck next time!!! <br>
 	**************************************************************
@@ -152,7 +152,7 @@ function handleSubmitQuestion(){
 }
 function showFeedBackPage(){
   $('.app').html(`<h2> You are right/wrong</h2>
-  <p><button class ="submit-Question"></button></p>`)
+  <p><button class ="submit-Question">Next Question</button></p>`)
   showNextPage();
 }
 
