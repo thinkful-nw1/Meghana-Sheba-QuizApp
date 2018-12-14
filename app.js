@@ -79,28 +79,16 @@ function renderResult() {
   $('.app').html(generateResultHTML());
   console.log(store.score);
 }
-function generateResultHTML() {
-  if (store.score > 3) {
-    $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 6.<br>
-	*************************************************************<br>
-	             You are a true Disney lover  !!! <br>
-	*************************************************************</h1>
-	<h2>You may retake the Quiz</h2>
-	<p> <button  class='restart' > Restart </button></p>`);
-  }
-  else {
-    $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /6 . <br>
-	*************************************************************<br>
-	Better luck next time!!! <br>
-	**************************************************************
-		</h1>
 
-	<h2>You may retake the Quiz</h2>
-	<p> <button  class='restart' type = "submit" > Restart </button></p>
-	</div>`);
-  }
+function restartQuiz(){
+  $('.app').on ('click' , '.restart',function(){
+    console.log('clicked');
+    store.currentIndex = 0;
+    store.score = 0;
+
+    render();
+  });
 }
-
 
 function handleStartButton() {
   $('.app').on('click','.start-quiz',function () {
@@ -129,6 +117,26 @@ function handleStartButton() {
           <h3 id ="results"> ${store.correctAns} </h3>
           <h3> Your score: ${store.score} / 6 </h3>`);
 
+  }
+  function generateResultHTML() {
+    if (store.score > 3) {
+      $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 6.<br>
+	*************************************************************<br>
+	             You are a true Disney lover  !!! <br>
+	*************************************************************</h1>
+	<h2>You may retake the Quiz</h2>
+	<p> <button  class='restart' > Restart </button></p>`);
+    } else {
+      $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /6 . <br>
+	*************************************************************<br>
+	Better luck next time!!! <br>
+	**************************************************************
+		</h1>
+
+	<h2>You may retake the Quiz</h2>
+	<p> <button  class='restart' > Restart </button></p>
+	</div>`);
+    }
   }
 
 function handleSubmitQuestion(){
@@ -164,6 +172,8 @@ function showNextPage(){
 function main(){
   handleStartButton();
   handleSubmitQuestion();
+  restartQuiz();
+
 }
 
 $(
