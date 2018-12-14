@@ -9,7 +9,6 @@
 
 */
 'use strict';
-alert('connected');
 const STORE = {
   userScore:0,
   currentQuestion: 1
@@ -53,13 +52,15 @@ const Questions =
 }
 ];
 function render(){
-  $('.js-start-quiz').on ('click',function(){
-    alert('started');
+  $('.js-start-quiz').on('click', event => {
+    console.log('`render` ran'); 
   });
 }
-$(render());
-function generateHTML(){}
-function positiveFeedback(){}
-function negativeFeedback(){}
-function showResults(){}
-function resetQuiz(){}
+
+$(render); 
+
+// function generateHTML(){}
+// function positiveFeedback(){}
+// function negativeFeedback(){}
+// function showResults(){}
+// function resetQuiz(){}
