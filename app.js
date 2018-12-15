@@ -85,9 +85,8 @@ const store = {
 
 
 function render() {
-  let currentQuestion = store.questions[store.currentIndex];
 
-  $('.app').html(generateQuestionHTML(currentQuestion));
+  $('.app').html(generateQuestionHTML(store.currentQuestion));
   }
 
 function renderResult() {
@@ -162,7 +161,7 @@ function handleSubmitQuestion(){
     console.log("handleSubmitQuestion ran");
     console.log(e);
 
-    let correctAns = store.questions[store.currentIndex].correct;
+    let correctAns = store.currentQuestion.correct;
     console.log(correctAns);
     let userAns = $("input[name='answers']:checked").val();
     console.log(userAns);
@@ -181,7 +180,7 @@ function handleSubmitQuestion(){
 function showWrongFeedBackPage() {
   $('.app').html(`<h2> Sorry you are Wrong.The correct answer is
 
-  (${store.questions[store.currentIndex].answers[store.questions[store.currentIndex].correct]} )</h2>
+  (${store.currentQuestion.answers[store.currentQuestion.correct]} )</h2>
   <p><button class ="submit-Question">Next Question</button></p>`)
   showNextPage();
 }
