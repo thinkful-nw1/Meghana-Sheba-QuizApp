@@ -1,11 +1,14 @@
 * {
   box-sizing: border-box;
-  font-family: 'WaltographRegular';
+  font-family: 'Open Sans', sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 35px;
 }
 
+.startQuiz {
+  
+}
 body {
   display: flex;
   line-height: 1.2em;
