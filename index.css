@@ -11,6 +11,11 @@ h1, h2{
   font-size: 50px; 
 }
 
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700; 
+}
+
 body {
   display: flex;
   line-height: 1.2em;
