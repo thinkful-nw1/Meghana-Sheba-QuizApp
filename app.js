@@ -60,7 +60,7 @@ const store = {
     'correct': 3
   },
   {
-    'question':'What did Alladin steal from the market?',
+    'question':'What did Aladdin steal from the market?',
     'answers': ['Lamp','Gold','Bread','Cake'],
     'correct':2
   }
@@ -117,8 +117,9 @@ function generateQuestionHTML(question) {
         
         <form action="none" class ="questionForm" >
         
-        <h3>Question ${store.currentIndex++}
-          of 7: ${question.question}</h3>
+        <p> Question ${store.currentIndex + 1}
+          out of 7</p>
+          <legend> <h2> ${question.question}</h2></legend >
 
 				<fieldset class="questionchoices">
 
@@ -182,7 +183,7 @@ function handleSubmitQuestion(){
 function showWrongFeedBackPage() {
   $('.app').html(`<h2> Sorry, you are wrong. The correct answer is
 
-  (${store.currentQuestion.answers[store.currentQuestion.correct]} )</h2>
+  "${store.currentQuestion.answers[store.currentQuestion.correct]}" </h2>
   <p><button class ="submit-Question">Next Question</button></p>`)
   showNextPage();
 }
