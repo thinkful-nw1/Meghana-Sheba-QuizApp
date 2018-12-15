@@ -6,9 +6,10 @@
   font-size: 35px;
 }
 
-.startQuiz {
-  
+h1 {
+  font-family: 'Waltograph'; 
 }
+
 body {
   display: flex;
   line-height: 1.2em;
