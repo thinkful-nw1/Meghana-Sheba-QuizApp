@@ -93,6 +93,7 @@ function renderResult() {
   $('.app').html(generateResultHTML());
   console.log(store.score);
 }
+
 //this will reset to the first question and score and current index set to 0
 function restartQuiz(){
   $('.app').on ('click' , '.restart',function(){
@@ -110,9 +111,9 @@ function handleStartButton() {
   });
 }
 
-  function generateQuestionHTML(question) {
+function generateQuestionHTML(question) {
     $('.app').html(`<div class="container">
-        <header><h2class ='title'>The Disney Quiz</h2></header>
+        <header><h2>The Disney Quiz</h2></header>
         
         <form action="none" class ="questionForm" >
         
@@ -180,14 +181,14 @@ function handleSubmitQuestion(){
 }
 
 function showWrongFeedBackPage() {
-  $('.app').html(`<h2> Sorry you are Wrong.The correct answer is
+  $('.app').html(`<h2> Sorry, you are wrong. The correct answer is
 
   (${store.currentQuestion.answers[store.currentQuestion.correct]} )</h2>
   <p><button class ="submit-Question">Next Question</button></p>`)
   showNextPage();
 }
 function showCorrectFeedBackPage(){
-  $('.app').html(`<h2> You are Correct</h2>
+  $('.app').html(`<h2> You are Correct! </h2>
   <p><button class ="submit-Question">Next Question</button></p>`)
   showNextPage();
 }
