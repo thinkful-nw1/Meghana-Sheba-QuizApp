@@ -139,19 +139,14 @@ function generateQuestionHTML(question) {
   }
   function generateResultHTML() {
     if (store.score > 5) {
-      $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 7.<br>
-	*************************************************************<br>
-	             You are a true Disney lover  !!! <br>
-	*************************************************************</h1>
+      $('.app').html(`<div class = "goodResult Result" > <h1> You scored  ${store.score} / 7. </h1>
+	             <h2> You are a true Disney lover!!! <h2>
 	<h2>You may retake the Quiz</h2>
 	<p> <button  class='restart' > Restart </button></p>`);
     } else {
-      $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /7 . <br>
-	*************************************************************<br>
-	Better luck next time!!! <br>
-	**************************************************************
-		</h1>
-
+      $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /7 . </h1>
+  <h2> Better luck next time!!! </h2> 
+  
 	<h2>You may retake the Quiz</h2>
 	<p> <button  class='restart' > Restart </button></p>
 	</div>`);
