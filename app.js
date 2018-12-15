@@ -28,44 +28,44 @@ const store = {
   'isStarted': false, //questions[store.currentIndex].correct
   'correctAns': '',
 
-  'questions' : [{
-    'question': 'What does Ariel collect?',
-    'answers': ['Sea shells', 'eels', 'human items', 'seaweed'],
-    'correct': 2
-  },
-  {
-    'question': 'How many stepsisters does cinderella have?',
-    'answers': ['Two', 'Three', 'Eight', 'one'],
-    'correct': 0
-  },
-  {
-    'question': 'What is the name of the mouse Cinderella rescues?',
-    'answers': ['Vinny', 'Chad', 'Gus', 'Jackie'],
-    'correct': 2
-  },
-  {
-    'question': 'What was Dory\'s first line in the movie Finding Dory?',
-    'answers': ['Look Out', 'Hi, I am Dory', 'Just keep swimming', 'Hey there Mr. Grumpy Grills'],
-    'correct': 1
-  },
-  {
-    'question': 'Who was Ariel\'s father ?',
-    'answers': ['Poseidon', 'Mr. Merman', 'Triton', 'Mr. Ariel'],
-    'correct': 2
-  },
+  'questions': [{
+      'question': 'What does Ariel collect?',
+      'answers': ['Sea shells', 'eels', 'human items', 'seaweed'],
+      'correct': 2
+    },
+    {
+      'question': 'How many stepsisters does cinderella have?',
+      'answers': ['Two', 'Three', 'Eight', 'one'],
+      'correct': 0
+    },
+    {
+      'question': 'What is the name of the mouse Cinderella rescues?',
+      'answers': ['Vinny', 'Chad', 'Gus', 'Jackie'],
+      'correct': 2
+    },
+    {
+      'question': 'What was Dory\'s first line in the movie Finding Dory?',
+      'answers': ['Look Out', 'Hi, I am Dory', 'Just keep swimming', 'Hey there Mr. Grumpy Grills'],
+      'correct': 1
+    },
+    {
+      'question': 'Who was Ariel\'s father ?',
+      'answers': ['Poseidon', 'Mr. Merman', 'Triton', 'Mr. Ariel'],
+      'correct': 2
+    },
 
-  {
-    'question': 'What is the name of Micky Mouse\'s dog?',
-    'answers': ['Mars', 'Neptune', 'Goofy', 'Pluto'],
-    'correct': 3
-  },
-  {
-    'question':'What did Alladin steal from the market?',
-    'answers': ['Lamp','gold','bread','cake'],
-    'correct':2
-  }
+    {
+      'question': 'What is the name of Micky Mouse\'s dog?',
+      'answers': ['Mars', 'Neptune', 'Goofy', 'Pluto'],
+      'correct': 3
+    },
+    {
+      'question': 'What did Alladin steal from the market?',
+      'answers': ['Lamp', 'gold', 'bread', 'cake'],
+      'correct': 2
+    }
   ],
-  get currentQuestion(){
+  get currentQuestion() {
     return this.questions[this.currentIndex];
   }
 };
@@ -87,15 +87,15 @@ const store = {
 function render() {
 
   $('.app').html(generateQuestionHTML(store.currentQuestion));
-  }
+}
 
 function renderResult() {
   $('.app').html(generateResultHTML());
   console.log(store.score);
 }
 //this will reset to the first question and score and current index set to 0
-function restartQuiz(){
-  $('.app').on ('click' , '.restart',function(){
+function restartQuiz() {
+  $('.app').on('click', '.restart', function () {
     console.log('clicked');
     store.currentIndex = 0;
     store.score = 0;
@@ -105,13 +105,13 @@ function restartQuiz(){
 }
 
 function handleStartButton() {
-  $('.app').on('click','.start-quiz',function () {
-        render();
+  $('.app').on('click', '.start-quiz', function () {
+    render();
   });
 }
 
-  function generateQuestionHTML(question) {
-    $('.app').html(`<div class="container">
+function generateQuestionHTML(question) {
+  $('.app').html(`<div class="container">
 				<header><h2class ='title'>The Disney Quiz</h2></header>
 
         	<p> Question ${store.currentIndex + 1}
@@ -133,17 +133,18 @@ function handleStartButton() {
           <h3 id ="results"> ${store.correctAns} </h3>
           <h3> Your score: ${store.score} / 7 </h3>`);
 
-  }
-  function generateResultHTML() {
-    if (store.score > 5) {
-      $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 7.<br>
+}
+
+function generateResultHTML() {
+  if (store.score > 5) {
+    $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 7.<br>
 	*************************************************************<br>
 	             You are a true Disney lover  !!! <br>
 	*************************************************************</h1>
 	<h2>You may retake the Quiz</h2>
 	<p> <button  class='restart' > Restart </button></p>`);
-    } else {
-      $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /7 . <br>
+  } else {
+    $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /7 . <br>
 	*************************************************************<br>
 	Better luck next time!!! <br>
 	**************************************************************
@@ -152,11 +153,11 @@ function handleStartButton() {
 	<h2>You may retake the Quiz</h2>
 	<p> <button  class='restart' > Restart </button></p>
 	</div>`);
-    }
   }
+}
 
-function handleSubmitQuestion(){
-  $('.app').on('submit', '.questionForm',function (e) {
+function handleSubmitQuestion() {
+  $('.app').on('submit', '.questionForm', function (e) {
     e.preventDefault();
     console.log("handleSubmitQuestion ran");
     console.log(e);
@@ -165,11 +166,10 @@ function handleSubmitQuestion(){
     console.log(correctAns);
     let userAns = $("input[name='answers']:checked").val();
     console.log(userAns);
-    if (userAns == correctAns){
+    if (userAns == correctAns) {
       store.score++;
-    showCorrectFeedBackPage();
-    }
-    else {
+      showCorrectFeedBackPage();
+    } else {
       showWrongFeedBackPage();
     }
     store.currentIndex++;
@@ -180,30 +180,30 @@ function handleSubmitQuestion(){
 function showWrongFeedBackPage() {
   $('.app').html(`<h2> Sorry you are Wrong.The correct answer is
 
-  (${store.currentQuestion.answers[store.currentQuestion.correct]} )</h2>
+  "${store.currentQuestion.answers[store.currentQuestion.correct]} "</h2>
   <p><button class ="submit-Question">Next Question</button></p>`)
   showNextPage();
 }
-function showCorrectFeedBackPage(){
+
+function showCorrectFeedBackPage() {
   $('.app').html(`<h2> You are Correct</h2>
   <p><button class ="submit-Question">Next Question</button></p>`)
   showNextPage();
 }
 
-function showNextPage(){
-  $('.app').on ('click','.submit-Question',function(){
-    if (store.currentIndex >=store.questions.length){
+function showNextPage() {
+  $('.app').on('click', '.submit-Question', function () {
+    if (store.currentIndex >= store.questions.length) {
       renderResult();
-    }
-    else{
+    } else {
       render();
     }
-  console.log(store.currentIndex);
+    console.log(store.currentIndex);
 
-});
+  });
 }
 
-function main(){
+function main() {
   handleStartButton();
   handleSubmitQuestion();
   restartQuiz();
@@ -213,4 +213,3 @@ function main(){
 $(
   main
 );
-
