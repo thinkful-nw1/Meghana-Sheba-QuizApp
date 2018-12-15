@@ -112,21 +112,23 @@ function handleStartButton() {
 
   function generateQuestionHTML(question) {
     $('.app').html(`<div class="container">
-				<header><h2class ='title'>The Disney Quiz</h2></header>
-
-        	<p> Question ${store.currentIndex + 1}
+        <header><h2class ='title'>The Disney Quiz</h2></header>
+        
+        <form action="none" class ="questionForm" >
+        
+        <p> Question ${store.currentIndex++}
           out of 7</p>
           <legend> <h2> ${question.question}</h2></legend >
-				<form action="none" class ="questionForm" >
+
 				<fieldset class="questionchoices">
 
 
-						<ul>
+						
 						${question.answers.map(function (answer, index) {
-        return `<li> <input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
-							<label for="ans-${index}" id = "ans">${answer}</label></input></li>`;
+        return `<ul> <input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
+							<label for="ans-${index}" id = "ans">${answer}</label></input> </ul>`;
       }).join('')}
-						</ul></fieldset>
+						</fieldset>
 							<button id ='submitButton'> Submit</button>
           </form>
 
