@@ -21,104 +21,194 @@ Users should be able to start a new quiz.
 
 */
 'use strict';
-const STORE = {
-  userScore:0,
-  currentQuestion: 1
-};
-const Questions =
-[{
-  'question': 'What does Ariel collect?',
-  'answers': ['Sea shells', 'eels', 'human items', 'seaweed'],
-  'correct': 2
-},
-{
-  'question': 'How many stepsisters does cinderella have?',
-  'answers': ['Two', 'Three', 'Eight', 'one'],
-  'correct': 0
-},
-{
-  'question': 'What is the name of the mouse Cinderella rescues?',
-  'answers': ['Vinny', 'Chad', 'Gus', 'Jackie'],
-  'correct': 2
-},
-{
-  'question': 'What was Dory\'s first line in the movie Finding Dory?',
-  'answers': ['Look Out', 'Hi, I am Dory', 'Just keep swimming', 'Hey there Mr. Grumpy Grills'],
-  'correct': 1
-},
-{
-  'question': 'Who was Ariel\'s father ?',
-  'answers': ['Poseidon', 'Mr. Merman', 'Triton', 'Mr. Ariel'],
-  'correct': 2
-},
 
-{
-  'question': 'What is the name of Micky Mouse\'s dog?',
-  'answers': ['Mars', 'Neptune', 'Goofy', 'Pluto'],
-  'correct': 3
-},
-{
-  'question':'What did Alladin steal from the market?',
-  'answers': ['Lamp','gold','bread','cake'],
-  'correct':2
+const store = {
+  'score': 0,
+  'currentIndex': 0,
+  'isStarted': false, //questions[store.currentIndex].correct
+  'correctAns': '',
+
+  'questions' : [{
+    'question': 'What does Ariel collect?',
+    'answers': ['Sea shells', 'eels', 'human items', 'seaweed'],
+    'correct': 2
+  },
+  {
+    'question': 'How many stepsisters does cinderella have?',
+    'answers': ['Two', 'Three', 'Eight', 'one'],
+    'correct': 0
+  },
+  {
+    'question': 'What is the name of the mouse Cinderella rescues?',
+    'answers': ['Vinny', 'Chad', 'Gus', 'Jackie'],
+    'correct': 2
+  },
+  {
+    'question': 'What was Dory\'s first line in the movie Finding Dory?',
+    'answers': ['Look Out', 'Hi, I am Dory', 'Just keep swimming', 'Hey there Mr. Grumpy Grills'],
+    'correct': 1
+  },
+  {
+    'question': 'Who was Ariel\'s father ?',
+    'answers': ['Poseidon', 'Mr. Merman', 'Triton', 'Mr. Ariel'],
+    'correct': 2
+  },
+
+  {
+    'question': 'What is the name of Micky Mouse\'s dog?',
+    'answers': ['Mars', 'Neptune', 'Goofy', 'Pluto'],
+    'correct': 3
+  },
+  {
+    'question':'What did Alladin steal from the market?',
+    'answers': ['Lamp','gold','bread','cake'],
+    'correct':2
+  }
+  ]
+};
+
+// function generateStartPage(){
+//   $('.app').html(`<header role=banner class='startQuiz'>
+//       <h1> Welcome to the Disney movies Quiz!! </h1>
+//     </header>
+//     <div class='start'>
+//       <p> How well do you know your Disney movies?</p>
+//       <hr>
+//       <button class='start-quiz'>START QUIZ</button>
+//       </div>`);
+// }
+
+
+
+
+function render() {
+  let currentQuestion = store.questions[store.currentIndex];
+
+  $('.app').html(generateQuestionHTML(currentQuestion));
+  }
+
+function renderResult() {
+  $('.app').html(generateResultHTML());
+  console.log(store.score);
 }
-];
-function render(){
-  $('.js-start-quiz').on('click', event => {
-    console.log('`render` ran'); 
+//this will reset to the first question and score and current index set to 0
+function restartQuiz(){
+  $('.app').on ('click' , '.restart',function(){
+    console.log('clicked');
+    store.currentIndex = 0;
+    store.score = 0;
+
+    render();
   });
 }
 
-$(render); 
+function handleStartButton() {
+  $('.app').on('click','.start-quiz',function () {
+        render();
+  });
+}
 
-// //start page
-// // handleStartButton
-// // generate question page 
-// function generateHTML(){}
+  function generateQuestionHTML(question) {
+    $('.app').html(`<div class="container">
+				<header><h2class ='title'>The Disney Quiz</h2></header>
 
-// //show current question number
-// function updateQuestionNumber () {
-// }
-
-// //show current score
-// function updateScore () {
-// }
-
-// //when user submits answer show feedback 
-// function handleSubmitAnswer () {
-//   $('.questionForm').on('submit', function (event) {
-//     event.preventDefault();
-//     const answer = $('input:checked').val();
-//     const correctAnswer = `$${QUESTIONS[questionNumber].correct}`;
-//     if (answer === correctAnswer) {
-//       positiveFeedback();
-//       updateScore(); 
-//     } else {
-//       negativeFeedback();
-//     }
-//   });
-// }
-// }
+        	<p> Question ${store.currentIndex + 1}
+          out of 7</p>
+          <legend> <h2> ${question.question}</h2></legend >
+				<form action="none" class ="questionForm" >
+				<fieldset class="questionchoices">
 
 
-// // function positiveFeedback(){
-//   let correctAnswer = `${QUESTIONS[questionNumber].correct}`;
-//   $('.answerForm').html(`<div class="feedback"><p>Correct!</p><button type=button class="nextButton">Next</button></div>`);
-// }
+						<ul>
+						${question.answers.map(function (answer, index) {
+        return `<li> <input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
+							<label for="ans-${index}" id = "ans">${answer}</label></input></li>`;
+      }).join('')}
+						</ul></fieldset>
+							<button id ='submitButton'> Submit</button>
+          </form>
 
+          <h3 id ="results"> ${store.correctAns} </h3>
+          <h3> Your score: ${store.score} / 7 </h3>`);
 
-// // function negativeFeedback(){}
-//   let correctAnswer = `${QUESTIONS[questionNumber].correct}`;
-//   $('.answerForm').html(`<div class="feedback"><p>Wrong!</p><button type=button class="nextButton">Next</button></div>`);
-// }
+  }
+  function generateResultHTML() {
+    if (store.score > 5) {
+      $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 7.<br>
+	*************************************************************<br>
+	             You are a true Disney lover  !!! <br>
+	*************************************************************</h1>
+	<h2>You may retake the Quiz</h2>
+	<p> <button  class='restart' > Restart </button></p>`);
+    } else {
+      $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /7 . <br>
+	*************************************************************<br>
+	Better luck next time!!! <br>
+	**************************************************************
+		</h1>
 
-// // generate results page
+	<h2>You may retake the Quiz</h2>
+	<p> <button  class='restart' > Restart </button></p>
+	</div>`);
+    }
+  }
 
+function handleSubmitQuestion(){
+  $('.app').on('submit', '.questionForm',function (e) {
+    e.preventDefault();
+    console.log("handleSubmitQuestion ran");
+    console.log(e);
 
-// // function resetQuiz(){}
+    let correctAns = store.questions[store.currentIndex].correct;
+    console.log(correctAns);
+    let userAns = $("input[name='answers']:checked").val();
+    console.log(userAns);
+    if (userAns == correctAns){
+      store.score++;
+    showCorrectFeedBackPage();
+    }
+    else {
+      showWrongFeedBackPage();
+    }
+    store.currentIndex++;
+  });
 
+}
 
+function showWrongFeedBackPage() {
+  $('.app').html(`<h2> Sorry you are Wrong.The correct answer is
 
+  (${store.questions[store.currentIndex].answers[store.questions[store.currentIndex].correct]} )</h2>
+  <p><button class ="submit-Question">Next Question</button></p>`)
+  showNextPage();
+}
+function showCorrectFeedBackPage(){
+  $('.app').html(`<h2> You are Correct</h2>
+  <p><button class ="submit-Question">Next Question</button></p>`)
+  showNextPage();
+}
 
+function showNextPage(){
+  $('.app').on ('click','.submit-Question',function(){
+    if (store.currentIndex >=store.questions.length){
+      renderResult();
+    }
+    else{
+      render();
+    }
+  console.log(store.currentIndex);
 
+});
+}
+
+function main(){
+  handleStartButton();
+  handleSubmitQuestion();
+  restartQuiz();
+
+}
+
+$(
+  main
+);
 
