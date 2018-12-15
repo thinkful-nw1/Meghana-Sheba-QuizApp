@@ -4,6 +4,7 @@
   font-weight: normal;
   font-style: normal;
   font-size: 25px;
+  color: #22313f; 
 }
 
 h1, h2{
@@ -14,6 +15,7 @@ h1, h2{
 h3 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700; 
+  color:  #22313f; 
 }
 
 body {
@@ -24,9 +26,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   overflow: auto;
+  
 }
 
-button:hover {
+button:hover, button:focus {
   cursor: pointer;
   background-color: rgb(192, 171, 216);
 }
@@ -36,7 +39,7 @@ button,
   padding: 10px;
 }
 
-input[type="radio"]:hover {
+input[type="radio"]:hover, input[type="radio"]:focus {
   cursor: pointer;
   background-color: rgb(192, 171, 216);
 }
@@ -46,11 +49,10 @@ input[type="radio"]:hover {
   margin: auto;
 }
 
-#ans:hover {
+/* #ans:hover, #ans:focus  {
   cursor: pointer;
   background-color: rgb(192, 171, 216);
-}
-
+} */
 
 .app {
   width: 70%;

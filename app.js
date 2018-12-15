@@ -117,9 +117,8 @@ function generateQuestionHTML(question) {
         
         <form action="none" class ="questionForm" >
         
-        <p> Question ${store.currentIndex + 1}
-          out of 7</p>
-          <legend> <h2> ${question.question}</h2></legend >
+        <h2> Question ${store.currentIndex + 1}
+          of 7: ${question.question}</h2>
 
 				<fieldset class="questionchoices">
 
