@@ -64,7 +64,10 @@ const store = {
     'answers': ['Lamp','gold','bread','cake'],
     'correct':2
   }
-  ]
+  ], 
+  get currentQuestion(){
+    return this.questions[this.currentIndex]; 
+  }
 };
 
 // function generateStartPage(){
