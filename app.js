@@ -64,9 +64,9 @@ const store = {
     'answers': ['Lamp','gold','bread','cake'],
     'correct':2
   }
-  ], 
+  ],
   get currentQuestion(){
-    return this.questions[this.currentIndex]; 
+    return this.questions[this.currentIndex];
   }
 };
 
@@ -121,12 +121,12 @@ function handleStartButton() {
 				<fieldset class="questionchoices">
 
 
-						<ul>
+
 						${question.answers.map(function (answer, index) {
-        return `<li> <input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
-							<label for="ans-${index}" id = "ans">${answer}</label></input></li>`;
+        return ` <div class="form-group"><input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
+							<label for="ans-${index}" id = "ans">${answer}</label></input></div>`;
       }).join('')}
-						</ul></fieldset>
+						</fieldset>
 							<button id ='submitButton'> Submit</button>
           </form>
 
