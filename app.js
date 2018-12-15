@@ -13,7 +13,7 @@
 const store = {
   'score': 0,
   'currentIndex': 0,
-  'isStarted': false,
+  'isStarted': false, //questions[store.currentIndex].correct
   'correctAns': '',
 
   'questions' : [{
@@ -79,7 +79,7 @@ function renderResult() {
   $('.app').html(generateResultHTML());
   console.log(store.score);
 }
-
+//this will reset to the first question and score and current index set to 0
 function restartQuiz(){
   $('.app').on ('click' , '.restart',function(){
     console.log('clicked');
@@ -98,13 +98,15 @@ function handleStartButton() {
 
   function generateQuestionHTML(question) {
     $('.app').html(`<div class="container">
-				<header>
-				<h2 class ='title'>The Disney Quiz</h2>
-				</header>
+				<header><h2class ='title'>The Disney Quiz</h2></header>
+
+        	<p> Question ${store.currentIndex + 1}
+          out of 7</p>
+          <legend> <h2> ${question.question}</h2></legend >
 				<form action="none" class ="questionForm" >
 				<fieldset class="questionchoices">
-						<p> Question  ${store.currentIndex + 1}  out of 7. </p>
-					<legend> <h3>${question.question}</h3></legend>
+
+
 						<ul>
 						${question.answers.map(function (answer, index) {
         return `<li> <input id="ans-${index}" type="radio" name ='answers'  value = '${index}' required >
@@ -119,7 +121,7 @@ function handleStartButton() {
 
   }
   function generateResultHTML() {
-    if (store.score > 3) {
+    if (store.score > 5) {
       $('.app').html(`<div class = "goodResult Result" ><h1> You scored  ${store.score} / 7.<br>
 	*************************************************************<br>
 	             You are a true Disney lover  !!! <br>
@@ -144,21 +146,39 @@ function handleSubmitQuestion(){
     e.preventDefault();
     console.log("handleSubmitQuestion ran");
     console.log(e);
+
+    let correctAns = store.questions[store.currentIndex].correct;
+    console.log(correctAns);
+    let userAns = $("input[name='answers']:checked").val();
+    console.log(userAns);
+    if (userAns == correctAns){
+      store.score++;
+    showCorrectFeedBackPage();
+    }
+    else {
+      showWrongFeedBackPage();
+    }
     store.currentIndex++;
-    console.log(store.questions[store.currentIndex]);
-    showFeedBackPage();
   });
 
 }
-function showFeedBackPage(){
-  $('.app').html(`<h2> You are right/wrong</h2>
+
+function showWrongFeedBackPage() {
+  $('.app').html(`<h2> Sorry you are Wrong.The correct answer is
+
+  (${store.questions[store.currentIndex].answers[store.questions[store.currentIndex].correct]} )</h2>
+  <p><button class ="submit-Question">Next Question</button></p>`)
+  showNextPage();
+}
+function showCorrectFeedBackPage(){
+  $('.app').html(`<h2> You are Correct</h2>
   <p><button class ="submit-Question">Next Question</button></p>`)
   showNextPage();
 }
 
 function showNextPage(){
-  $('.app').on ('click','.submit-Question' , function(){
-    if (store.currentIndex >= store.questions.length){
+  $('.app').on ('click','.submit-Question',function(){
+    if (store.currentIndex >=store.questions.length){
       renderResult();
     }
     else{
@@ -180,7 +200,3 @@ $(
   main
 );
 
-// function positiveFeedback(){}
-// function negativeFeedback(){}
-// function showResults(){}
-// function resetQuiz(){}
