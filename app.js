@@ -30,12 +30,12 @@ const store = {
 
   'questions' : [{
     'question': 'What does Ariel collect?',
-    'answers': ['Sea shells', 'eels', 'human items', 'seaweed'],
+    'answers': ['Sea shells', 'Eels', 'Human items', 'Seaweed'],
     'correct': 2
   },
   {
     'question': 'How many stepsisters does cinderella have?',
-    'answers': ['Two', 'Three', 'Eight', 'one'],
+    'answers': ['Two', 'Three', 'Eight', 'One'],
     'correct': 0
   },
   {
@@ -45,7 +45,7 @@ const store = {
   },
   {
     'question': 'What was Dory\'s first line in the movie Finding Dory?',
-    'answers': ['Look Out', 'Hi, I am Dory', 'Just keep swimming', 'Hey there Mr. Grumpy Grills'],
+    'answers': ['Look Out', 'Hi, I am Dory', 'Just keep swimming', 'Hey there, Mr. Grumpy Grills'],
     'correct': 1
   },
   {
@@ -61,7 +61,7 @@ const store = {
   },
   {
     'question':'What did Alladin steal from the market?',
-    'answers': ['Lamp','gold','bread','cake'],
+    'answers': ['Lamp','Gold','Bread','Cake'],
     'correct':2
   }
   ], 
