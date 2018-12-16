@@ -33,6 +33,9 @@ button:hover, button:focus {
   cursor: pointer;
   background-color: rgb(192, 171, 216);
 }
+button:focus{
+  background-color: rgb(192, 171, 216);
+}
 
 button,
 #ans {
@@ -41,6 +44,10 @@ button,
 
 input[type="radio"]:hover, input[type="radio"]:focus {
   cursor: pointer;
+}
+
+#form-group:focus {
+
   background-color: rgb(192, 171, 216);
 }
 
@@ -53,6 +60,7 @@ input[type="radio"]:hover, input[type="radio"]:focus {
   cursor: pointer;
   background-color: rgb(192, 171, 216);
 } */
+
 
 .app {
   width: 70%;
@@ -78,7 +86,8 @@ ul {
 }
 
 header {
-  display: flex background-color: #ffd1ff;
+  display: flex;
+  background-color: #ffd1ff;
   margin: auto;
   color: black;
   padding: 5px 10px;
