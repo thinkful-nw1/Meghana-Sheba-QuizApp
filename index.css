@@ -10,14 +10,17 @@ body {
   display: flex;
   line-height: 1.2em;
   height: 700px;
-  background-image: url('backgroundImg.jpg');
+  background-image: url('/Users/vaibhavjoshi/Documents/Meghana/Thinkful-nw-1/QuizzApp/backgroundImg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   overflow: auto;
 }
 
-button:hover {
+button:hover  {
   cursor: pointer;
+  background-color: rgb(192, 171, 216);
+}
+button:focus{
   background-color: rgb(192, 171, 216);
 }
 
@@ -25,9 +28,12 @@ button,
 #ans {
   padding: 10px;
 }
-
 input[type="radio"]:hover {
   cursor: pointer;
+}
+
+#form-group:focus {
+
   background-color: rgb(192, 171, 216);
 }
 
@@ -40,6 +46,7 @@ input[type="radio"]:hover {
   cursor: pointer;
   background-color: rgb(192, 171, 216);
 }
+
 
 
 .app {
@@ -66,7 +73,8 @@ ul {
 }
 
 header {
-  display: flex background-color: #ffd1ff;
+  display: flex;
+  background-color: #ffd1ff;
   margin: auto;
   color: black;
   padding: 5px 10px;
