@@ -146,7 +146,7 @@ function generateQuestionHTML(question) {
     } else {
       $('.app').html(`<div class="badResult Result" ><h1>Your score is ${store.score} /7 . </h1>
   <h2> Better luck next time!!! </h2> 
-  <img src = https://media.giphy.com/media/Lb3vIJjaSIQWA/giphy.gif alt "Big Hero gives a hug" height=50% width=50%>
+  <img src = https://media.giphy.com/media/Lb3vIJjaSIQWA/giphy.gif alt = "Big Hero gives a hug" height=50% width=50%>
 	<h2>You may retake the Quiz</h2>
 	<p> <button  class='restart' > Restart </button></p>
 	</div>`);
