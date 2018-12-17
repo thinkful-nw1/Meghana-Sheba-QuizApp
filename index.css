@@ -1,9 +1,21 @@
 * {
   box-sizing: border-box;
-  font-family: 'WaltographRegular';
+  font-family: 'Open Sans', sans-serif;
   font-weight: normal;
   font-style: normal;
-  font-size: 35px;
+  font-size: 25px;
+  color: #22313f; 
+}
+
+h1, h2{
+  font-family: 'Waltograph'; 
+  font-size: 50px; 
+}
+
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700; 
+  color:  #22313f; 
 }
 
 body {
@@ -14,9 +26,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   overflow: auto;
+  
 }
 
-button:hover  {
+button:hover, button:focus {
   cursor: pointer;
   background-color: rgb(192, 171, 216);
 }
@@ -28,7 +41,8 @@ button,
 #ans {
   padding: 10px;
 }
-input[type="radio"]:hover {
+
+input[type="radio"]:hover, input[type="radio"]:focus {
   cursor: pointer;
 }
 
@@ -42,11 +56,10 @@ input[type="radio"]:hover {
   margin: auto;
 }
 
-#ans:hover {
+/* #ans:hover, #ans:focus  {
   cursor: pointer;
   background-color: rgb(192, 171, 216);
-}
-
+} */
 
 
 .app {
@@ -74,7 +87,6 @@ ul {
 
 header {
   display: flex;
-  background-color: #ffd1ff;
   margin: auto;
   color: black;
   padding: 5px 10px;
