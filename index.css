@@ -10,7 +10,7 @@ body {
   display: flex;
   line-height: 1.2em;
   height: 700px;
-  background-image: url('/Users/vaibhavjoshi/Documents/Meghana/Thinkful-nw-1/QuizzApp/backgroundImg.jpg');
+  background-image: url('backgroundImg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   overflow: auto;
